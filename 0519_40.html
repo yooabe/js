@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        如果需要运行后的参数在外部拿到，对结果有不同处理方式的话则用有参数有返回值的函数
+        return关键字
+            有参数有返回值的函数：
+                格式：
+                    function 函数名(形参1,形参2...){
+                        函数体;
+                        return 表达式;
+                    }
+            return后面写什么表达式，函数调用的结构就是return后面表达式的值
+            遇到return后函数会终止
+         */
+
+
+        /* 
+        argument用来存储实际传入的参数。
+            优先使用形参，除非特殊情况（ex 传入任意个数字的和
+         */
+
+
+        /* 
+        调用函数的时候，系统会分配给对应的空间给这个函数使用，
+            当使用完毕后，这个内存空间要释放，还给系统（销毁
+        内存管理机制：函数中声明的变量和形参会随着函数调用而创建，
+            随着函数的调用结束而销毁，再函数中声明的变量和函数，
+            有效范围再当前函数范围内，局部作用域
+         */
+
+
+        /* 
+        递归：（内存管理机制，禁用递归，瞬间占用大量内存
+            1.函数自己调用自己
+            2.一般情况有参数
+            3.一般情况下有return
+
+        计算1~n的和
+        function sum(n) {
+            var res = 0;
+            for (var i = 1; i <= n; i++) {
+                res += 1;
+            }
+            return res;
+        }
+        alert(sum(100));
+        
+        方法：
+            1.首先去找临界值，即无需计算，获得的值
+            2.找到这一次和上一次的关系
+            3.假设当前函数可以使用，调用自身计算上一次
+         */
+        function sum(n) {
+            if (n == 1) {
+                return 1;
+            }
+            return sum(n - 1) + n;
+        }
+        alert(sum(100));
+
+
+
+
+
+        /* 
+        for...in 循环 快速遍历
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        for (var i in arr) {
+            document.write(arr[i] + "<br>")
+        }
+        a = b
+        b = c
+        c = a
+
+
+
+        /* 
+        数组的方法
+            栈结构（木盆
+                从同一头进出，先进后出
+            push（末尾添加元素
+                返回值，插完元素后的长度
+            pop（取下一个元素
+                返回值，取下的元素
+
+            队列结构（排队
+                末尾进，头部出，先进先出
+            shitf（从头部去下一个元素
+                返回值，取下的元素
+            unshitf（从头部添加元素
+                返回值，插完元素后的长度
+
+            concat（拷贝原数组，生成新数组
+                返回值，合并后的新数组
+            slice（提取元素生成新数组
+                返回值，生成的新数组
+
+
+            splice（增删改
+                返回值，截取的数组
+            var arr=[1,2,3,4];
+            var res=arr.splice(2,0,'hhhh','hhhh');
+                1.开始截取的位置
+                2.截取的元素的长度
+                3.插入的元素
+            
+
+            join（拼接符，拼接一个字符串
+                返回值，拼接好的字符串
+            reverse（逆序，改变原数组
+
+
+            sort（排序，逐位排序
+            如果要要以数据大小排序：
+                var arr=[1,10,20,15,25,5];
+                arr.sort(function(value1,value2){
+                    return value1-value2
+                })
+         */
+
+        //冒泡排序
+        function bubbleSort(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = 0; j < arr.length - (i + 1); j++) {
+                    if (arr[j] > arr[i]) {
+                        var tmp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = tmp;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
