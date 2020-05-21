@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        选择排序（打擂台法
+            每一轮能选出一个最小数
+         */
+        function changeSort(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = i+1; j < arr.length; j++) {
+                    if (arr[i] > arr[j]) {
+                        var tmp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = tmp;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
