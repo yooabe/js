@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        思想：
+            面向过程编程思想：只考虑数学逻辑
+            面向对象编程思想：直接将生活逻辑映射到我们的程序
+                1.分析有哪些实体
+                2.设计实体属性和功能
+                3.实体之间相互作用
+         */
+
+
+        /* 
+       定时器
+           var timer= setInterval(匿名函数，毫秒数，返回值)
+         */
+
+        //秒表
+        function $(id) {
+            return document.getElementById(id);
+        }
+        var i = 0;//总秒数
+        var timer = null;//记录定时器返回值
+        var isRunning =false;//当前定时器运行状态
+        window.onload = function () {
+            function startFunc() {
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    i++;
+                    $("sec").innerHTML = doubleNum(i % 60);
+                    $("min").innerHTML = doubleNum(parseInt(i / 60) % 60);
+                    $("hour").innerHTML = doubleNum(parseInt(i / 3600));
+                }, 30);
+            }
+            function pauseFunc() {
+                clearInterval(timer);
+            }
+            $("btn1").onclick=function(){
+                if(!isRunning){
+                    $("btn1").innerHTML="暂停";
+                    isRunning=true;
+                    startFunc();
+                }else{
+                    $("btn1").innerHTML="开始";
+                    isRunning=false;
+                    pauseFunc();
+                }
+            }
+            $("reset").onclick = function () {
+                clearInterval(timer);
+                i = 0;
+                isRunning=false;
+                $("btn1").innerHTML="开始";
+                $("sec").innerHTML = "00";
+                $("min").innerHTML = "00";
+                $("hour").innerHTML = "00";
+            }
+
+            function doubleNum(n) {
+                if (n < 10) {
+                    return "0" + n;
+                } else {
+                    return n;
+                }
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <span id="hour">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <br>
+        <button id="btn1">开始</button>
+        <button id="reset">复位</button>
+    </div>
+</body>
+
+</html>
