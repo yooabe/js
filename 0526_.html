@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        open("baidu.com","xxx",'width=400,heigth=400...')
+            1：url
+            2：字符串。给打开的窗口起一个名字
+            3：一串特殊含义的字符串
+
+         */
+        function btnClick() {
+            open('https://github.com/', 'abe', 'width=100,heigth=100,top=100,left=100');
+        }
+
+
+
+        /* 
+        url:统一资源定位符
+            中文：协议://IP(域名)/:端口号/路径/?查询字符串#锚点
+            英文：protocol://hostname:port/pathname/?search#hash
+            location.protocol file:本子磁盘文件
+                              http:
+                              https:
+
+            location.hosename 主机名 IP
+                                     域名(IP别称)
+
+            location.port 端口号(默认隐藏)
+                是当前电脑中使用网络的软件，随机分配的标号 0~65535
+                可以直接定位到当前使用网络的程序
+
+            location.pathname 路径
+
+            location.search 查询字符串
+                ?name1=value1&name2=value2
+
+            location.hash 锚点
+
+
+            location三个方法：assign replace reload
+        */
+
+
+
+        /* 
+        DOM 获取元素节点的方法
+            Id  -document
+            TagName -node
+            ClassName   -node(IE8以下不兼容)
+            Name    -document(一般用在表单元素)
+
+            querySelector()   -document(一个元素节点)
+            querySelectorAll()  -document(一个伪数组)
+         */
+        var node = document.querySelector('.box1');
+
+
+        //封装一个兼容IE8以下的node获取ClassName方法
+        function elementsByClassName(node, classStr) {
+            var nodes = node.getElementByTagName("*");
+            var arr=[];
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].className === classStr) {
+                    arr.push(node[i]);
+                }
+            }
+            return arr;
+        }
+
+
+
+        /* 
+        获取当前有效样式
+         */
+        function getStyle(node,cssStyle){
+            return node.currentStyle ? node.currentStyle[cssStyle] : gerComputedStyle(node)[cssStyle];
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick='btnClick();'>111</button>
+    <div id="box1"></div>
+</body>
+
+</html>
