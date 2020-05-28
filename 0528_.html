@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        window事件
+            load
+            unload
+            scroll
+            resize
+
+        表单事件
+            blur 失去焦点
+            focus 获得焦点
+            select 选中文本
+            change 修改文本并失去焦点
+
+            必须添加在form元素上
+                submit
+                reset
+         */
+
+
+
+        /* 
+        事件绑定：
+            元素节点.on + 事件类型 = 匿名函数；
+
+        事件对象
+        function(ev){
+            var e = ev || window.event;
+        }
+
+            button 的属性
+                0 左键
+                1 滚轮
+                2 右键
+
+        获取当前鼠标位置
+            clientX clientY 原点：可视窗口的左上角
+            pageX pageY 原点：整个原点的左上角
+            screenX screenY 原点：屏幕的左上角
+
+
+        
+        修改键
+            shiftKey 按下为true
+            altKey
+            ctrlKey
+            metaKey 开始键
+
+
+        键盘
+            keyCode
+            which
+                返回大写字母ASCII码值
+                只在keydown下支持
+
+            var which=e.which||e.keyCode ;
+
+
+            charCode
+            which
+                返回区分大小写
+                只在keypress下支持，只支持字符键
+         */
+
+
+
+
+        /* 
+        this 指向 函数主人
+        target 指向 目标对象/触发对象
+            IE8以下不兼容 window.event.srcElement;
+         */
+
+
+        /* 
+        事件冒泡：由里向外
+        事件捕获：由外向里
+         */
+        //阻止事件冒泡
+        function stopBubble(e) {
+            return e.cancelBubble ? e.cancelBubble = true : e.stopPropagation();
+        }
+
+        window.onload = function () {
+            var aDivs = document.getElementsByTagName("div");
+            for (i = 0; i < aDivs.length; i++) {
+                aDivs[i].onclick = function (ev) {
+                    var e = ev || window.event;
+                    stopBubble(e);
+                    alert(this.id);
+                }
+            }
+        }
+
+
+        /* 
+        右键菜单
+            document.oncontextmenu=function(ev){
+                return false;
+            }
+
+        阻止超链接的默认行为
+            规范方法
+                e.preventDefault ? e.preventDefault()?window.event.returnValue=false;
+         */
+
+
+
+        /* 
+        拖拽
+            mousedown
+                记录距离
+                var offsetX = e.clientX - node.offsetLeft;
+                var offsetY = e.clientY - node.offsetTop;
+            mousemove
+                保持距离
+                node.style.left=e.clientX - offsetX+'px';
+                node.style.top=e.clientY - offsetY+'px';
+            mouseup
+                取消拖拽
+                onmousemove=null;
+         */
+
+        //拖拽
+        function drag(node) {
+            node.onmousedown = function (ev) {
+                var e = ev || window.event;
+                var offsetX = e.clientX - node.offsetLeft;
+                var offsetY = e.clientY - node.offsetTop;
+                document.onmousemove = function (ev) {
+                    var e = ev || window.event;
+                    node.style.left = e.clientX - offsetX + 'px';
+                    node.style.top = e.clientY - offsetY + 'px';
+                }
+            }
+            document.inmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+
+
+        /* 
+        窗口的宽高(可以设置限制出界)
+            var windowWidth=document.documentElement.clientWidth || document.body.clientWidth;
+            var windowHeight=document.documentElement.clientHeight || document.body.clientHeight;
+         */
+
+        //限制版拖拽
+        function limitDrag(node) {
+            node.onmousedown = function (ev) {
+                var e = ev || window.event;
+                var offsetX = e.clientX - node.offsetLeft;
+                var offsetY = e.clientY - node.offsetTop;
+                document.onmousemove = function (ev) {
+                    var e = ev || window.event;
+                    var l = e.clientX - offsetX;
+                    var t = e.clientY - offsetY;
+
+                    //限制出界
+                    if (l <= 0) {
+                        l = 0;
+                    }
+                    var windowWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                    if (l >= windowWidth - node.offsetWidth) {
+                        l = windowWidth - node.offsetWidth;
+                    }
+                    if (t <= 0) {
+                        t = 0;
+                    }
+                    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+                    if(t>=windowHeight-node.offsetHeight){
+                        t=windowHeight-node.offsetHeight;
+                    }
+
+                    node.style.left = l + 'px';
+                    node.style.top = t + 'px';
+                }
+            }
+            document.inmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+    </script>
+    <style>
+        div {
+            padding: 50px;
+        }
+
+        #div1 {
+            background-color: red;
+        }
+
+        #div2 {
+            background-color: yellow;
+        }
+
+        #div3 {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+</body>
+
+</html>
