@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        事件委托
+            1.找到父节点或者祖先节点
+            2.将事件添加到找到的节点上
+            3.找到触发对象，判断是否是想要的触发对象，进行后续操作
+
+        node.onclick=function(ev){
+            var e=ev||window.event;
+            var target=e.target||window.event.srcElement;
+            if(target.nodeName.toLowerCase()==='标签名'){
+                ...
+            }
+        }
+         */
+
+
+        
+        /* 
+        事件监听器
+            1.重复添加，覆盖
+            2.精确删除事件上的函数
+
+
+            addEventListener()
+                格式：node.addEventListener('click',function(){
+                    alert(1);
+                },false);
+                    removeEventListener
+
+                参数：
+                    1.事件类型
+                    2.绑定函数
+                    3.布尔值 true 事件捕获
+                             false 事件冒泡 默认
+         */
+
+         //兼容版本
+        function addEvent(node,eventType,funcName){
+            if(node.addEventListener){
+                node.addEventListener(eventType,funcName,false);
+            }else{
+                node.attachEvent('on'+eventType,funcName);
+            }
+        }
+
+        function removeEvent(node,eventType,funcName){
+            if(node.removeEventListener){
+                node.removeEventListener(eventType,funcName,false);
+            }else{
+                node.detachEvent('on'+evenType,funcName);
+            }
+        }
+
+
+
+        /* 
+        正则表达式
+            1.通过new去声明正则表达式
+                第一个参数：正则表达式的主体 字符串
+                第二个参数：修饰符
+                i
+                g
+                var box1=new RegExp('hello','ig')
+            2.省略new运算符去声明正则表达式
+                var box1=RegExp('hello','ig')
+            3.通过常量赋值
+                var box1=/hello/gi;
+
+        只有两个方法
+            test
+                格式：正则.test(字符串)
+                功能：字符串中匹配这个正则是否存在
+                返回值：成功则true
+            exec
+                格式：正则.exec(字符串)
+                功能：字符串中匹配这个正则是否存在
+                返回值：返回匹配到的串，匹配成功则返回一个装有字符串的数组
+                        失败则null
+         */
+
+
+        /* 
+        字符串中使用正则的方法
+            match()
+                格式：字符串.match(正则)
+                功能：在字符串中匹配是否有复合正则表达式
+                返回值：成功则返回匹配到字串的数组
+                    失败则null
+
+            repalce()
+                格式：replace(oldStr.newStr)
+                功能：替换
+                返回值：替换成功的新字符串
+
+            split()
+                格式：字符串.solit(分隔符/正则)
+                功能：用分隔符将原字符串进行分割
+                返回值：分割剩下的字串组成的数组
+
+            search()
+                格式：字符串.search(字符/正则)
+                功能：找到符合条件的字串第一次出现的位置
+                返回值：找到则返回下标，否则返回-1
+         */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
