@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        替代字符 |
+
+        修饰符
+            i 忽略大小写
+            g 全局
+            m 换行匹配
+
+        转义字符
+            \.
+            \*
+         */
+
+
+
+        /* 
+        本地存储技术
+            localStorage（IE8以下不兼容
+                1.永久存储
+                2.最大可以存储5M  客户端一个微型数据库
+                3.只能存储string
+            cookie
+                1.可以设置设置时间
+                2.最大可以存4kb
+                3.每一个域名下最多可以存储50条数据
+            sessionStorage（结合后台使用
+
+
+        
+        localStorage 对象
+            setItem(name,value);
+            getItem(name);
+            removeItem(name);
+         */
+
+
+
+
+        /* 
+        常见this
+            全局 window
+            对象方法 对象
+            事件绑定 事件
+
+
+        强制数据类型转换
+            call（立即执行
+                格式：函数名.call();
+                ex：show.call('aaaa',20,50);
+
+            apply（立即执行
+                格式：函数名.apply();
+                ex：show.apply('aaaa',[20,50]);
+
+            bind
+                格式：函数名字.bind()
+                ex：show.bind('aaaa')(20.50);
+         */
+
+
+
+
+        /* 
+        let 只要遇到大括号就形成作用域
+            块级作用域
+
+        var 将变量或形参所在函数的大括号作为作用域处理
+
+        const 后续没法修改
+         */
+
+
+
+
+        /* 
+        箭头函数
+            适当省略函数中的function和return关键字
+                1.不能用new
+                2.如果返回值是一个对象要加()
+                3.this指向上一层函数的主人
+         */
+        function add(x) {
+            return x + 10;
+        }
+        var add = x => x + 10;
+
+
+        //箭头函数与ECMA5数组方法结合
+        var arr = [1, 2, 3, 4, 5];
+        var newArr = arr.filter(function (item) {
+            return item > 20;
+        })
+
+        var newArr = arr.filter(item => item > 20);
+
+
+
+
+        /* 
+        中括号解构
+            var [x,y]=[1,2];
+        大括号解构
+            var{x,y}={x,y};
+
+        好处
+            1.交换两个数
+                var[x,y]=[1,2];
+                [x,y]=[y,x];
+            2.函数可以返回多个值
+                function show(){
+                    return ['1','2','3']
+                }
+                var[a,b,c]=show();
+                alert(a,c)
+            3.函数定义参数，和传入参数的顺序改变(可以带默认值)
+                function show({name,age=18,sex}){
+                    alert('我叫'+name+',今年'+age+'，是一个'+sex+'性');
+                }
+                show({
+                    sex:'男',
+                    name:'小明'
+                });
+            4.快速取出数组中的某一个元素
+         */
+
+
+
+        /* 
+        ECMA6字符串 反引号``
+            1.换行，代码缩进都能在字符串显示
+            2.${变量/表达式/函数调用}
+                function show({name,age=18,sex}){
+                    alert(`我叫${name}，今年${age}岁，是一位${sex}性`);
+                }
+         */
+
+
+
+
+        /* 
+        ECMA6新增数组方法
+                Array.form()
+                    将伪数组转换为真数组
+                find()
+                    在数组中查找符合条件的元素
+                findIndex()
+                    下标
+                arr.copyWithin
+                    第一个参数：从哪个下标开始
+                    第二个参数和第三个参数：范围
+
+            合并对象
+                Object.assign()
+                    合并到第一个形参（浅拷贝
+                        浅拷贝：只拷贝地址
+                        深拷贝：将复合数据类型重新生成
+         */
+
+
+
+        /* 
+        集合
+            1.不重复
+            2.无序
+         */
+
+        //Set
+        let imgs=new Set();
+        imgs.add(100);
+        imgs.add(100);
+        imgs.add(200);
+        //遍历
+        for(let item of imgs.keys()){
+            console.log(item);
+        }
+
+        //数组变集合
+        var set=new Set([1,2,3,2,3,4,5]);
+
+        //集合变数组
+        var arr=[...set];
+        
+
+        //Map映射
+        let map=new Map();
+        map.set('张三','打猎');
+        map.set('李四','打渔');
+        map.set('李四','睡觉');
+
+        console.log(map.get('李四'));
+        //遍历
+        for(let [key,value]of map){
+            console.log(key,value);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
