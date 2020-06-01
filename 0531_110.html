@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        prototype 原型对象
+            每一个函数上，都有一个原型对象prototype
+
+        用构造函数上，我们可以给构造函数的元素prototype添加方法
+            1.如果我们将方法添加到构造函数的原型prototype对象傻瓜
+            2.构造函数构造出来的对象共享原型上所有的方法
+         */
+
+
+        /* 
+        混合法（构造函数+prototype
+         */
+
+
+
+        /* 
+        面向对象，继承、封装（封装构造函数）、多态 
+         */
+
+        //原型链继承
+        /* for (var funcName in node.prototype) {
+            otherNode.prototype[funcName] = node.prototype[funcName];
+        } */
+        
+        /* 
+        继承和多态同一件事情的两种不同侧重
+        继承：侧重从父一级构造函数，继承到的属性和方法
+        多态：侧重子一级，自己重写和新增的属性的方法
+         */
+
+
+        /* 
+        构造函数构造出来的对象有一个属性__proto__，指向构造出这个对象的构造函数的原型
+
+        instanceof 关键字
+            判断一个对象是否是这个构造函数构造出来的
+         */
+
+
+
+
+
+
+        /* function Person(name, sex, age) {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
+        }
+        Person.prototype.showSelf = function () {
+            alert(`我是一个叫${this.name}，今年${this.age}岁的${this.sex}孩`);
+        }
+        function Worker(name, sex, age,job){
+            Person.call(this,name,sex,age);
+            this.job=job;
+        }
+        //原型链 继承父一级的方法
+        //1.for...in遍历
+        for(var funcName in Person.prototype){
+            Worker.prototype[funcName] = Person.prototype[funcName];
+        }
+        //2.Object.create
+        Worker.prototype=Object.create(Person.prototype);
+        //3.调用构造函数继承
+        Worker.prototype=new Person();
+        Worker.prototype.showJob=function(){
+            alert('我的工作是'+this.job);
+        } */
+
+
+        //ECMA6class语法
+        class Person {
+            //class属性添加
+            constructor(name, sex, age) {
+                this.name = name;
+                this.sex = sex;
+                this.age = age;
+            }
+            showSelf() {
+                alert(`我是一个叫${this.name}，今年${this.age}岁的${this.sex}孩`);
+            }
+        }
+        class Worker extends Person {
+            constructor(name, sex, age, job) {
+                //继承父一级属性
+                super(name, sex, age);
+                this.job = job;
+            }
+            showJob() {
+                alert('我的工作是' + this.job);
+            }
+        }
+
+        var w1=new Worker('xiaomi','nan','20','chengxuyuan');
+        w1.showSelf();
+        w1.showJob();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
