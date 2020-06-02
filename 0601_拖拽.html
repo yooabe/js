@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <style>
         #div1 {
             width: 100px;
@@ -12,7 +13,16 @@
             background-color: teal;
             position: absolute;
         }
+        #div2 {
+            width: 150px;
+            height: 150px;
+            background-color: tan;
+            position: absolute;
+            left: 500px;
+        }
     </style>
+    <script src="./0601_Drag.js"></script>
+    <script src="./0602_limitDrag.js"></script>
     <script>
         /* 
         改造
@@ -25,40 +35,30 @@
             3.全局函数 => 构造函数的方法
          */
 
+        /* 
+        this容易混乱的部分
+            1.事件绑定
+            2.定时器
+        赋值、传参会改变this
+            1.var _this = this;
+            2.this.func.bind(this);
+         */
+
         /*  var oDiv = null;
          var offsetX = 0;
          var offestY = 0; */
 
-
-        function Drag(id) {
-            this.oDiv = document.getElementById(id);
-            this.oDiv.onmousedown = this.funcDown;
-            document.onmouseup = this.funcUp;
-        }
-
-        Drag.prototype.funcDown = function (ev) {
-            var e = ev || window.event;
-            this.offsetX = e.clientX - this.oDiv.offsetLeft;
-            this.offestY = e.clientY - this.oDiv.offsetTop;
-            document.onmousemove = this.funcMove;
-        }
-        Drag.prototype.funcMove = function (ev) {
-            var e = ev || window.event;
-            this.oDiv.style.left = e.clientX - this.offsetX + 'px';
-            this.oDiv.style.top = e.clientY - this.offestY + 'px';
-        }
-        Drag.prototype.funcUp = function () {
-            document.onmousemove = null;
-        }
-
         window.onload = function () {
             new Drag("div1");
+            new limitDrag("div2");
         }
     </script>
+    
 </head>
 
 <body>
     <div id="div1"></div>
+    <div id="div2"></div>
 </body>
 
 </html>
