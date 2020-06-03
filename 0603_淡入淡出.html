@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img1 {
+            opacity: .3;
+            filter: alpha(opacity=30);
+            width: 500px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oImg = document.getElementById("img1");
+            oImg.onmousemove = function () {
+                startMove(100);
+            }
+            oImg.onmouseout = function () {
+                startMove(30);
+            }
+        }
+        //中间变量
+        var alpha = 30;
+        var timer = null;
+        function startMove(iTarger) {
+            var oImg = document.getElementById('img1');
+            clearInterval(timer);
+            var speed =4;
+            speed = iTarger > alpha ? Math.abs(speed) : -Math.abs(speed);
+            timer = setInterval(function () {
+                if (iTarger == alpha) {
+                    clearInterval(timer);
+                } else {
+                    alpha += speed;
+                }
+                oImg.style.opacity = alpha / 100;
+                oImg.style.filter = `alpha(opacity=${alpha})`;
+            }, 30);
+        }
+    </script>
+</head>
+
+<body>
+    <img src="./file/1.jpg" alt="" id="img1">
+</body>
+
+</html>
