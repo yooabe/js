@@ -11,7 +11,7 @@
             height: 100px;
             background-color: teal;
             margin: 50px;
-            opacity: .3;
+            opacity: 0.3;
             filter: alpha(opacity=30);
         }
     </style>
@@ -57,7 +57,7 @@
                     if (attr == "opacity") {
                         iCur += speed;
                         node.style.opacity = iCur / 100;
-                        node.style.filter = "alpha(opacity=30)"
+                        node.style.filter = "alpha(opacity="+iCur+")";
                     } else {
                         node.style[attr] = iCur + speed + 'px'
                     };
