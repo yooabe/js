@@ -34,10 +34,14 @@
             height: 100%;
         }
     </style>
+    <script src="startMove.js"></script>
     <script>
         window.onload = function () {
             var oUl1 = document.getElementById('ul1');
             var aLis = oUl1.getElementsByTagName('li');
+
+            var currentIndex = 2;
+
             for (i = 0; i < aLis.length; i++) {
                 //文档流转换
                 aLis[i].style.left = aLis[i].offsetLeft + 'px';
@@ -49,6 +53,24 @@
             for (i = 0; i < aLis.length; i++) {
                 aLis[i].style.position = "absolute";
                 aLis[i].style.margin = '0px';
+
+                aLis[i].onmouseover = function () {
+                    this.style.zIndex = currentIndex++;
+                    startMove(this, {
+                        width: 200,
+                        height: 200,
+                        marginLeft: -50,
+                        marginTop: -50
+                    })
+                }
+                aLis[i].onmouseout = function () {
+                    startMove(this, {
+                        width: 100,
+                        height: 100,
+                        marginLeft: 0,
+                        marginTop: 0,
+                    })
+                }
             }
         }
     </script>
