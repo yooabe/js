@@ -20,9 +20,9 @@
                     ActiveXObject("Microsoft.XMLHTTP");
                  */
                 var xhr = null;
-                try{
+                try {
                     xhr = new XMLHttpRequest();
-                } catch(error) {
+                } catch (error) {
                     xhr = new ActiveXObject("Microsoft.XMLHTTP");
                 }
 
@@ -38,16 +38,30 @@
                 xhr.send();
 
                 //等待数据响应
+                /* 
+                onreadystatechange 事件类型
+                readyState 发生变化时候调用
+                    0 调用open方法之前
+                    1 调用send方法之后，发送请求
+                    2 send方法完成，已经接收到所有的相应内容
+                    3 正在解析下载到的数据
+                    4 解析完成
+                 */
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4) {
-                        alert(xhr.responseText);
+                        //判断状态码
+                        if (xhr.status == 200) {
+                            alert(xhr.responseText);
+                        } else {
+                            alert("error:" + xhr.status)
+                        }
                     }
                 }
             }
         }
 
 
-        /* 
+        /*
         try{
             尝试执行的代码
             尝试执行的代码
