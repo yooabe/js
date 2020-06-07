@@ -11,11 +11,11 @@ function startMove(node, cssObj, complete) {
                     } else {
                         iCur = parseInt(getStyle(node, attr));
                     }
+                    
                     var speed = (iTarget - iCur) / 8;
                     speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
 
-
-                    // node.style[attr] = iCur + speed + 'px';
+                    
                     if (attr == "opacity") {
                         iCur += speed;
                         node.style.opacity = iCur / 100;

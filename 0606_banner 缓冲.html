@@ -47,12 +47,12 @@
             oUl1.innerHTML += oUl1.innerHTML;
             oUl1.style.width = 220 * 8 + "px";
             setInterval(function () {
-                startMove(oUl1, { left: oUl1.offsetLeft - 220 }, function () {
+                startMove(oUl1, {left: oUl1.offsetLeft - 220}, function () {
                     if (oUl1.offsetLeft <= -oUl1.offsetWidth / 2) {
                         oUl1.style.left = "0px";
                     }
                 })
-            }, 1000);
+            }, 2000);
         }
     </script>
 </head>
