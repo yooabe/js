@@ -20,9 +20,9 @@
                     ActiveXObject("Microsoft.XMLHTTP");
                  */
                 var xhr = null;
-                if (window.XMLHttpRequest) {
+                try{
                     xhr = new XMLHttpRequest();
-                } else {
+                } catch(error) {
                     xhr = new ActiveXObject("Microsoft.XMLHTTP");
                 }
 
@@ -55,6 +55,15 @@
             补救的代码
         }
         [注] 更多的用在代码调试和后期维护
+
+
+        try{
+            尝试执行的代码
+            尝试执行的代码
+            throw new Error("异常信息代码")
+        }catch(error){
+            补救的代码
+        }
          */
     </script>
 </head>
