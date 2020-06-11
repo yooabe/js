@@ -33,10 +33,26 @@
             create database db1 character set utf8; 
         选择数据库
             use
-        创建表
-            create table{
+        创建表 一定要设置id
+            create table 表名(
+                字符名 数据类型,
+                ...
+            )character set 字符集 collate 校对规则;
+        
+            数据类型
+                int 整形
+                float 浮点数
 
-            }character set utf8 
+                char(10)
+                varchar(30)
+
+                date 日期 "2000-01-01"
+
+                text 文本
+
+        查看表
+            show tables;
+            desc 表名;
         */
     </script>
 </head>
