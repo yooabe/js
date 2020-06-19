@@ -4,7 +4,7 @@ url
 data
 success 数据下载成功以后
 error 数据下载失败后
- */
+*/
 
 function $ajax({ method = "get", url, data, success, error }) {
     //1.创建ajax对象
