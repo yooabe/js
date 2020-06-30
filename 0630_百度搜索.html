@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div1 {
+            width: 300px;
+            margin: 100px auto;
+        }
+    </style>
+    <script>
+        function download(data) {
+            var arr = data.s;
+            var oUl = document.getElementById("ul1");
+            oUl.innerHTML = '';
+            oUl.style.display = "block";
+
+            for (var i = 0; i < arr.length; i++) {
+                var newLi = document.createElement("li");
+                var oA = document.createElement("a");
+                oA.innerHTML = arr[i];
+                oA.href = 'http://www.baidu.com/s?wd=' + arr[i];
+                oA.target = '_blank';
+
+                newLi.appendChild(oA);
+                oUl.appendChild(newLi);
+            }
+        }
+
+        window.onload = function () {
+            var oQ = document.getElementById("q");
+            var oUl = document.getElementById("ul1");
+
+            oQ.onkeyup = function () {
+                var oValue = this.value;
+                if (!oValue) {
+                    oUl.style.display = "none";
+                } else {
+                    //加载数据
+                    var oScript = document.createElement("script");
+                    oScript.src = `http://suggestion.baidu.com/su?wd=${this.value}&cb=download`;
+                    document.body.appendChild(oScript);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <input type="text" id="q">
+        <ul id="ul1">
+
+        </ul>
+    </div>
+</body>
+
+</html>
