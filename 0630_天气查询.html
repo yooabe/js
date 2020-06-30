@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./file/bootstrap.min.css">
+    <script>
+        function download(data) { 
+            var oT1 = document.getElementById("t1");
+            var oInfo = document.getElementById("info");
+            oInfo.innerHTML=`城市：${data.city}，pm2.5：${data.pm25}`;
+            //1.天气情况
+            var arr = data.weather;
+            var str = ``;
+            for (var i = 0; i < arr.length; i++) {
+                str += `<tr>
+                        <th>${arr[i].date}</th>
+                        <th>${arr[i].weather}</th>
+                        <th>${arr[i].wind}</th>
+                        <th>${arr[i].temp}</th>
+                    </tr>`
+            }
+            oT1.innerHTML = str;
+        }
+
+        window.onload = function () {
+            var oSearch = document.getElementById("search");
+            var oCity = document.getElementById("city");
+            oSearch.onclick = function () {
+                if (!oCity.value) {
+                    alert("请输入城市名字");
+                } else {
+                    var oScript = document.createElement("script");
+                    oScript.src = `https://api.asilu.com/weather/?city=${oCity.value}&callback=download`;
+                    document.body.appendChild(oScript);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2>天气查询
+                    <span id="info"></span>
+                </h2>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="city">城市名字：</label>
+                    <input type="text" class="form-control" id="city">
+                </div>
+                <button id="search">查询该城市的天气</button>
+            </div>
+            <div class="panel-footer">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>天气</th>
+                            <th>风向</th>
+                            <th>气温</th>
+                        </tr>
+                    </thead>
+                    <tbody id="t1"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
