@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        cookie
+            1.可以设置过期时间
+            2.最大可以存储4kb，每一个域名下最多可以存储50条数据（不同浏览器有偏差
+                注：只能字符串。一般只存储一些重要的信息，登录，购物车信息，视频播放进度...
+            
+            语法：
+                格式：name=value;[expires=data];[secure]
+                name 键
+                value 值（都是自定义
+         */
+
+        //设置cookie
+        /* 
+            encodeURIComponent 中文编译成字符
+            decodeURIComponent 字符编译成中文
+         */
+        document.cookie = 'username=' + encodeURIComponent('中文');
+
+        //获取cookie
+        alert(decodeURIComponent(document.cookie));
+
+
+        /* 
+            expires：过期时间
+                必须填写，日期对象
+
+         */
+        //获取n天后的时间
+        function afterOfDate(n) {
+            var d = new Date();
+            var day = d.getDate();
+            d.setDate(n + day);
+            return d;
+        }
+
+        document.cookie="username=xxx;expires="+afterOfDate(7);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
