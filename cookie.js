@@ -46,3 +46,36 @@ function getCookie(name) {
 function removeCookie(name) {
     document.cookie = encodeURIComponent(name) + "=;expires=" + new Date(0);
 }
+
+/* 
+            【注】在使用一个方法实现三个功能的时候，通过传入参数的数量识别
+
+            设置cookie
+            $cookie(name,value);
+            $cookie(name,value;{});
+
+            获取cookie
+            $cookie(name);
+
+            删除cookie
+            $cookie(name,null)
+        */
+
+function $cookie(name) {
+    //判断传入参数的个数
+    switch (arguments.length) {
+        case 1:
+            return getCookie(name);
+            break;
+        case 2:
+            if (arguments[1] == null) {
+                removeCookie(name);
+            } else {
+                setCookie(name, arguments[1], {});
+            }
+            break;
+        default:
+            setCookie(name, arguments[1], arguments[2]);
+            break;
+    }
+}
