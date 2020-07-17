@@ -19,11 +19,17 @@
             return d;
         }
 
-        // document.cookie = "username=xxx;expires="+afterOfDate(7);
+        //快速获取过去时间的方法
+        // new Date(0);
+
+        document.cookie = "username=xxx;expires=" + afterOfDate(7);
+
         window.onload = function () {
             var oBtn = document.getElementById("btn1");
             oBtn.onclick = function () {
-                document.cookie = "username=;expires=" + afterOfDate(-1);
+                // document.cookie = "username=;expires=" + afterOfDate(-1);
+
+                document.cookie = "username=;expires=" + new Date(0);
             }
         }
     </script>
