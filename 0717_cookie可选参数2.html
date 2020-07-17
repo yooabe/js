@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            expires：过期时间
+                必须填写，日期对象
+                系统会自动清除过期的cookie
+         */
+
+        /* 
+            path 限制访问路径
+                如果不去设置，默认是加载当前.html文件的路径
+            【注】我们设置的cookie的路径，和加载当前文件的路径必须一致，如果不一致。cookie访问失败
+         */
+
+        /* 
+            domain 限制访问域名
+                如果不去设置，默认是加载当前.html文件的服务器域名/IP
+            【注】如果加载当前文件域名和设置的域名不一致，设置cookie失败
+         */
+
+        /* 
+            secure
+                如果不设置，设置cookie，可以通过http协议加载文件设置
+                                        也可以https协议
+                设置了之后只能设置https协议加载cookie
+         */
+
+        document.cookie = "username=xxx;secure";
+
+        // document.cookie = "username=xxx;path=" + "/cookie/demo";
+
+        // alert(document.cookie);
+    </script>
+</head>
+
+<body>
+    <button id="btn1">删除cookie</button>
+</body>
+
+</html>
