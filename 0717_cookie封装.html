@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            setCookie()
+            getCookie()
+            removeCookie()
+
+            encodeURIComponent 中文编译成字符
+            decodeURIComponent 字符编译成中文
+        */
+
+        function setCookie(name, value, { expires, path, domain, secure }) {
+            var cookieStr = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+            if (expires) {
+                cookieStr += ";expires=" + afterOfDate(expires);
+            }
+            if (path) {
+                cookieStr += ";path=" + path;
+            }
+            if (domain) {
+                cookieStr += ";domain=" + domain;
+            }
+            if (secure) {
+                cookieStr += ";secure";
+            }
+            document.cookie = cookieStr;
+
+        }
+
+        //获取n天后的日期
+        function afterOfDate(n) {
+            var d = new Date();
+            var day = d.getDate();
+            d.setDate(n + day);
+            return d;
+        }
+
+        setCookie("超级英雄", "钢铁侠", { expires: 7 });
+        setCookie("DC", "海王", { expires: 30 });
+        setCookie("神话故事", "孙悟空", { expires: 60 });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
