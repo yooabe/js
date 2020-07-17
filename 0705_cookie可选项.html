@@ -7,30 +7,30 @@
     <title>Document</title>
     <script>
         /* 
-        path 限制访问路径
-            如果不去设置，默认是加载当前.html文件路径
-            我们设置cookie路径，和加载当前文件的路径，必须一致，如果不一致，cookie访问失败
-        */
+            expires：过期时间
+                必须填写，日期对象
+                系统会自动清除过期的cookie
+         */
 
-        /* 
-        domain 限制访问域名
-            如果不去设置，默认是加载当前.html文件的服务器域名/IP
-            如果不一致的话，设置cookie失败
-        */
+        function afterOfDate(n) {
+            var d = new Date();
+            var day = d.getDate();
+            d.setDate(n + day);
+            return d;
+        }
 
-        /* 
-        secure
-            如果不设置，设置cookie，可以通过http协议加载文件设置
-                                    也可以通过https
-            设置了之后，只能设置https协议加载cookie 
-        */
-        //    document.cookie="username=xxx;path="+"/aaa/cookie/demo"
-        document.cookie = "username=xxx;damain=" + "localhosx";
+        // document.cookie = "username=xxx;expires="+afterOfDate(7);
+        window.onload = function () {
+            var oBtn = document.getElementById("btn1");
+            oBtn.onclick = function () {
+                document.cookie = "username=;expires=" + afterOfDate(-1);
+            }
+        }
     </script>
 </head>
 
 <body>
-
+    <button id="btn1">删除cookie</button>
 </body>
 
 </html>
