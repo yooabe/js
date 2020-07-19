@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+            内存泄漏
+         */
+
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+
+            /* oDiv.onclick = function () {
+                var id = oDiv.id;
+                oDiv.onclick = function () {
+                    alert(id);
+                }
+                oDiv = null;
+            } */
+
+            oDiv.onclick = function () {
+                alert(id);
+            }
+            //页面解构
+            window.onunload = function () {
+                oDiv.onclick = null;
+                oDiv = null;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1"></div>
+</body>
+
+</html>
