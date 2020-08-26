@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let game = {
+            a: "1",
+            down() {
+                console.log(1)
+            }
+        }
+
+        let methods = {
+            up:Symbol(),
+            down:Symbol()
+        };
+
+        game[methods.up] = function(){
+            console.log(2)
+        }
+        game[methods.down] = function(){
+            console.log(3)
+        }
+
+        console.log(game)
+    </script>
+</body>
+
+</html>
