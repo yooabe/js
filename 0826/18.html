@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //对象继承 es5
+        function Phone(brand, price) {
+            this.brand = brand;
+            this.price = price;
+        }
+        Phone.prototype.call = function () {
+            console.log(1)
+        }
+
+        function SmartPhone(brand, price, color, size) {
+            Phone.call(this, brand, price);
+            this.color = color;
+            this.size = size;
+        }
+
+        //设置子级构造函数的原型
+        SmartPhone.prototype = new Phone;
+        SmartPhone.prototype.constructor = SmartPhone;
+
+        //声明子类方法
+        SmartPhone.prototype.plauGame = function(){
+            console.log(2)
+        }
+
+        const chuizi = new SmartPhone('锤子',2344,'black','5.5inch')
+        console.log(chuizi)
+
+
+        //es6
+        class Phone1{
+            constructor(brand,price){
+                this.brand = brand;
+                this.price = price
+            }
+
+            call(){
+                console.log(1)
+            }
+        }
+        class SmartPhone1 extends Phone1 {
+            constructor(brand,price,color,size){
+                super(brand,price)
+                this.color=color;
+                this.size=size;
+            }
+            plauGame(){
+                console.log(2);
+            }
+        }
+
+        const xiaomi = new SmartPhone1('小米',4444,'white','5.2inch')
+        console.log(xiaomi)
+        xiaomi.plauGame();
+    </script>
+</body>
+
+</html>

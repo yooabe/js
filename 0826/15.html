@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let m = new Map();
+
+        m.set('name','hhh')
+        m.set('change',function(){
+            console.log(1)
+        })
+        let obj = {
+            school:'aaa'
+        }
+        m.set(obj,['asdh','asdsa','asdq'])
+
+        console.log(m)
+        //size
+        console.log(m.size)
+        //delete
+        m.delete('name');
+        console.log(m)
+        //get
+        console.log(m.get('change'));
+        //遍历
+        for(let v of m){
+            console.log(v)
+        }
+        //clear
+        m.clear();
+        console.log(m)
+
+
+    </script>
+</body>
+</html>
