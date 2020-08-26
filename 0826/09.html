@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //promise 异步编程的新解决方案
+
+        const p = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                let data = '读取成功'
+                let err = '读取失败'
+                reject(err);
+            },1000)
+        })
+
+        //调用promise对象的then方法
+        p.then(function(success){
+            console.log(success)
+        },function(reason){
+            console.error(reason)
+        })
+    </script>
+</body>
+</html>
