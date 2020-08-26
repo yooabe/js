@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: #58a;
+        }
+    </style>
+</head>
+<body>
+    <div id="ad"></div>
+
+    <script>
+        let ad = document.getElementById("ad");
+        ad.addEventListener("click",function(){
+            //以往采用：外层保存this值
+            // let _this = this;
+            setTimeout(()=>{
+                this.style.background = "pink";
+            },2000)
+        })
+    </script>
+</body>
+</html>

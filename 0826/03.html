@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //创建Symbol
+        let s = Symbol();
+        let s2 = Symbol("标识符");
+        let s3 = Symbol("标识符");
+
+        //Symblo.for 创建
+        let s4 = Symbol.for("标识符");
+        let s5 = Symbol.for("标识符");
+
+
+        console.log(s2 === s3);//false
+        console.log(s4 === s5);//true
+
+
+        /* 
+            七种数据类型 (usonb)
+                String
+                Number
+                Boolean
+                Undefined
+                Null
+                Object
+                Symbol
+         */
+    </script>
+</body>
+
+</html>
